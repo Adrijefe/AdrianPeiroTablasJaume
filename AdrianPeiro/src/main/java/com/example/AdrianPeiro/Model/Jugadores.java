@@ -1,71 +1,109 @@
 package com.example.AdrianPeiro.Model;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-
+import java.util.List;
 @Entity
-@Table
+@Table(name = "Jugadores")
 public class Jugadores {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column(nullable = false)
-    private String nombre;
-    private String pais;
-    private int titulosGrandSlam;
-    private String anosActividad;
-    private String imagen;
+    private Long ID_Jugador;
 
+    private String Nombre;
 
-    public Jugadores() {}
+    private String Pais;
 
-    public Jugadores(String nombre, String pais, int titulosGrandSlam, String anosActividad, String imagen) {
-        this.nombre = nombre;
-        this.pais = pais;
-        this.titulosGrandSlam = titulosGrandSlam;
-        this.anosActividad = anosActividad;
-        this.imagen = imagen;
+    @Column(name = "Títulos_Grand_Slam", nullable = false)
+    private Integer TitulosGrandSlam;
+
+    @Column(name = "Años_Actividad", nullable = false)
+    private String AñosActividad;
+
+    @Column(name = "Imagen")
+    private String Imagen;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_Lista", nullable = false)
+    private ListaJugadores listaJugadores;
+
+    @OneToMany(mappedBy = "jugador", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Torneos> torneos;
+
+    public Jugadores() {
+    }
+
+    public Jugadores(Long ID_Jugador, String nombre, String pais, Integer titulosGrandSlam, String añosActividad, String imagen, ListaJugadores listaJugadores, List<Torneos> torneos) {
+        this.ID_Jugador = ID_Jugador;
+        Nombre = nombre;
+        Pais = pais;
+        TitulosGrandSlam = titulosGrandSlam;
+        AñosActividad = añosActividad;
+        Imagen = imagen;
+        this.listaJugadores = listaJugadores;
+        this.torneos = torneos;
+    }
+
+    public Long getID_Jugador() {
+        return ID_Jugador;
+    }
+
+    public void setID_Jugador(Long ID_Jugador) {
+        this.ID_Jugador = ID_Jugador;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        Nombre = nombre;
     }
 
     public String getPais() {
-        return pais;
+        return Pais;
     }
 
     public void setPais(String pais) {
-        this.pais = pais;
+        Pais = pais;
     }
 
-    public int getTitulosGrandSlam() {
-        return titulosGrandSlam;
+    public Integer getTitulosGrandSlam() {
+        return TitulosGrandSlam;
     }
 
-    public void setTitulosGrandSlam(int titulosGrandSlam) {
-        this.titulosGrandSlam = titulosGrandSlam;
+    public void setTitulosGrandSlam(Integer titulosGrandSlam) {
+        TitulosGrandSlam = titulosGrandSlam;
     }
 
-    public String getAnosActividad() {
-        return anosActividad;
+    public String getAñosActividad() {
+        return AñosActividad;
     }
 
-    public void setAnosActividad(String anosActividad) {
-        this.anosActividad = anosActividad;
+    public void setAñosActividad(String añosActividad) {
+        AñosActividad = añosActividad;
     }
 
     public String getImagen() {
-        return imagen;
+        return Imagen;
     }
 
     public void setImagen(String imagen) {
-        this.imagen = imagen;
+        Imagen = imagen;
     }
 
+    public ListaJugadores getListaJugadores() {
+        return listaJugadores;
+    }
+
+    public void setListaJugadores(ListaJugadores listaJugadores) {
+        this.listaJugadores = listaJugadores;
+    }
+
+    public List<Torneos> getTorneos() {
+        return torneos;
+    }
+
+    public void setTorneos(List<Torneos> torneos) {
+        this.torneos = torneos;
+    }
 }
 

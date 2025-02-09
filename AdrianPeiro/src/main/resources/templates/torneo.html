@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Torneos del Jugador</title>
+    <!-- Vinculando el archivo CSS -->
+    <link rel="stylesheet" th:href="@{/css/torneo.css}">
+</head>
+<body>
+
+<h1>Torneos del Jugador</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nombre del Torneo</th>
+        <th>Año</th>
+        <th>Resultado</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="torneo : ${torneos}">
+        <td th:text="${torneo.nombreTorneo}"></td>
+        <td th:text="${torneo.año}"></td>
+        <td th:text="${torneo.resultado}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,63 +1,51 @@
 package com.example.AdrianPeiro.Controler;
 
-import com.example.AdrianPeiro.Model.Jugadores;
 import com.example.AdrianPeiro.Model.JugadoresRepository;
+import com.example.AdrianPeiro.Model.ListaJugadoresRepository;
+import com.example.AdrianPeiro.Model.TorneosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
 
-@RestController
-@RequestMapping("/jugadores")
+@Controller
 public class JugadoresController {
 
     @Autowired
-        JugadoresRepository jugadoresRepository;
+    JugadoresRepository jugadoresRepository;
 
-    @GetMapping
-    public List<Jugadores> obtenerJugador(){
-        return (List<Jugadores>) jugadoresRepository.findAll();
+    @Autowired
+    ListaJugadoresRepository listaJugadoresRepository;
 
+    @Autowired
+    TorneosRepository torneosRepository;
+
+
+    @GetMapping("/jugadores")
+    public String getJugadores(Model model) {
+        model.addAttribute("Jugador", jugadoresRepository.findAll());
+        return "jugadores";
     }
 
-    @GetMapping("/id")
-    public ResponseEntity<Jugadores> obtenerJugadorPorId(@PathVariable(value = "id")Long id){
-        Optional<Jugadores> jugadores = jugadoresRepository.findById(id);
-
-        if (jugadores.isPresent()){
-            return ResponseEntity.ok().body(jugadores.get());
-        }
-        else {
-            return ResponseEntity.notFound().build();
-        }
+    @GetMapping("/listas")
+    public String getListas(Model model) {
+        model.addAttribute("ListaJugador", listaJugadoresRepository.findAll());
+        return "listaJugadores";
     }
 
-    @PostMapping
-    public Jugadores crearJugador(@RequestBody Jugadores jugadores){
-        return jugadoresRepository.save(jugadores);
+
+    @GetMapping("/torneos")
+    public String getTorneos(Model model) {
+        model.addAttribute("Torneo", torneosRepository.findAll());
+        return "torneo";
     }
 
-    @DeleteMapping("/{id}")
-    public void eliminarJugadores(@PathVariable Long id){jugadoresRepository.deleteById(id);}
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Jugadores>actualizarJugadores(@PathVariable Long id, @RequestBody Jugadores jugadoresActualizados) {
-        Optional<Jugadores> optionalJugadores = jugadoresRepository.findById(id);
 
-        if (optionalJugadores.isPresent()) {
-            Jugadores jugadores = optionalJugadores.get();
-            jugadores.setNombre(jugadoresActualizados.getNombre());
-            jugadores.setAnosActividad(jugadoresActualizados.getAnosActividad());
-            jugadores.setPais(jugadoresActualizados.getPais());
-            jugadores.setTitulosGrandSlam(jugadoresActualizados.getTitulosGrandSlam());
-            jugadores.setImagen(jugadoresActualizados.getImagen());
 
-            return ResponseEntity.ok().body(jugadoresRepository.save(jugadores));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+
+
+
 }
 

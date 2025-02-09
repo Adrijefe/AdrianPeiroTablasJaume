@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Jugadores</title>
+  <!-- Vinculando el archivo CSS -->
+  <link rel="stylesheet" th:href="@{/css/jugador.css}">
+</head>
+<body>
+
+<h1>Jugadores</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Nombre</th>
+    <th>País</th>
+    <th>Títulos Grand Slam</th>
+    <th>Años de Actividad</th>
+    <th>Imagen</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <!-- Iterando sobre la lista de jugadores -->
+  <tr th:each="jugador : ${jugadores}">
+    <td th:text="${jugador.nombre}"></td>
+    <td th:text="${jugador.pais}"></td>
+    <td th:text="${jugador.titulosGrandSlam}"></td>
+    <td th:text="${jugador.añosActividad}"></td>
+    <td>
+      <!-- Mostrar imagen si está disponible -->
+      <img th:src="@{${jugador.imagen}}" alt="Imagen de ${jugador.nombre}" width="100">
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
