@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Listas de Jugadores</title>
-    <!-- Vinculando el archivo CSS -->
-    <link rel="stylesheet" th:href="@{/css/listaJugadores.css}">
+    <link rel="stylesheet" th:href="@{/css/lista.css}">
 </head>
 <body>
 
 <h1>Listas de Jugadores</h1>
+
 
 <table>
     <thead>
@@ -19,14 +19,10 @@
     </thead>
 
     <tbody>
-    <!-- Iterando sobre la lista de listas de jugadores -->
-    <tr th:each="lista : ${listasJugadores}">
+    <tr th:each="lista : ${listaJugadores}">
+        <td th:text="${lista.ID_Lista}"></td>
         <td th:text="${lista.nombreLista}"></td>
         <td>
-            <ul>
-                <!-- Iterando sobre los jugadores de la lista -->
-                <li th:each="jugador : ${lista.jugadores}" th:text="${jugador.nombre}"></li>
-            </ul>
         </td>
         <td>
     </tr>

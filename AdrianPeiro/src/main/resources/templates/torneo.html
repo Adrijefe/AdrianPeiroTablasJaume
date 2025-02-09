@@ -9,6 +9,8 @@
 <body>
 
 <h1>Torneos del Jugador</h1>
+<link rel="stylesheet" th:href="@{/css/torneo.css}">
+
 
 <table>
     <thead>
@@ -20,7 +22,7 @@
     </thead>
 
     <tbody>
-    <tr th:each="torneo : ${torneos}">
+    <tr th:each="torneo : ${torneo}">
         <td th:text="${torneo.nombreTorneo}"></td>
         <td th:text="${torneo.año}"></td>
         <td th:text="${torneo.resultado}"></td>

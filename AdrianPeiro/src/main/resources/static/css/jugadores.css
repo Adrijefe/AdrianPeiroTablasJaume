@@ -1,0 +1,66 @@
+/* Archivo: jugadores.css */
+
+/* Estilo general para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilo para el encabezado */
+h1 {
+    color: #333;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo para la tabla */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+/* Estilo para las celdas de la tabla */
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo para los encabezados de las columnas */
+th {
+    background-color: #007BFF;
+    color: white;
+    font-size: 1.1rem;
+}
+
+/* Estilo para las filas de la tabla */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo para las celdas de texto */
+td {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Estilo para la imagen del jugador */
+td img {
+    border-radius: 50%;
+    object-fit: cover;
+    max-width: 100px;
+    height: 100px;
+}
