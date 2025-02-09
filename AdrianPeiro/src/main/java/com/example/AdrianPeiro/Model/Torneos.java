@@ -9,7 +9,7 @@ public class Torneos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idTorneo;  // Usando camelCase
 
-    @Column(name = "NombreTorneo", nullable = false)
+    @Column(name = "NOMBRETORNEO", nullable = false)
     private String nombreTorneo;  // Usando camelCase
 
     @Column(name = "Año", nullable = false)

@@ -9,6 +9,7 @@ public class Jugadores {
     private Long ID_Jugador;
 
     private String Nombre;
+    @Column(name = "País", nullable = false)
 
     private String Pais;
 
