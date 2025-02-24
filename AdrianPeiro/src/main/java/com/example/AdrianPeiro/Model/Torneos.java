@@ -1,5 +1,6 @@
 package com.example.AdrianPeiro.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,26 +8,28 @@ import jakarta.persistence.*;
 public class Torneos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idTorneo;  // Usando camelCase
+    private Long idTorneo;
 
     @Column(name = "NOMBRETORNEO", nullable = false)
-    private String nombreTorneo;  // Usando camelCase
+    private String nombreTorneo;
 
     @Column(name = "Año", nullable = false)
-    private Integer año;
+    private int año;
 
     @Column(name = "Resultado", nullable = false)
     private String resultado;
+
+
+    @JsonIgnoreProperties("ID_Jugador")
 
     @ManyToOne
     @JoinColumn(name = "ID_Jugador", nullable = false)
     private Jugadores jugador;
 
-    // Constructor por defecto
-    public Torneos() {}
+    public Torneos() {
+    }
 
-    // Constructor con parámetros
-    public Torneos(Integer idTorneo, String nombreTorneo, Integer año, String resultado, Jugadores jugador) {
+    public Torneos(Long idTorneo, String nombreTorneo, int año, String resultado, Jugadores jugador) {
         this.idTorneo = idTorneo;
         this.nombreTorneo = nombreTorneo;
         this.año = año;
@@ -34,12 +37,11 @@ public class Torneos {
         this.jugador = jugador;
     }
 
-    // Métodos getter y setter
-    public Integer getIdTorneo() {
+    public Long getIdTorneo() {
         return idTorneo;
     }
 
-    public void setIdTorneo(Integer idTorneo) {
+    public void setIdTorneo(Long idTorneo) {
         this.idTorneo = idTorneo;
     }
 
@@ -51,11 +53,11 @@ public class Torneos {
         this.nombreTorneo = nombreTorneo;
     }
 
-    public Integer getAño() {
+    public int getAño() {
         return año;
     }
 
-    public void setAño(Integer año) {
+    public void setAño(int año) {
         this.año = año;
     }
 

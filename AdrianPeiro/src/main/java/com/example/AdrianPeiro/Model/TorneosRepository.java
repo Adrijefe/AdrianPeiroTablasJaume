@@ -1,6 +1,6 @@
 package com.example.AdrianPeiro.Model;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TorneosRepository extends CrudRepository<Torneos,Integer> {
+public interface TorneosRepository extends JpaRepository<Torneos,Long> {
 }

@@ -1,6 +1,6 @@
 package com.example.AdrianPeiro.Model;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ListaJugadoresRepository extends CrudRepository<ListaJugadores,Long> {
+public interface ListaJugadoresRepository extends JpaRepository<ListaJugadores,Long> {
 }

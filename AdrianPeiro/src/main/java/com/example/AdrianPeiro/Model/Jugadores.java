@@ -1,31 +1,30 @@
 package com.example.AdrianPeiro.Model;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.util.List;
+
 @Entity
 @Table(name = "Jugadores")
 public class Jugadores {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID_Jugador;
-
+    @Column(nullable = false)
     private String Nombre;
-    @Column(name = "País", nullable = false)
-
     private String Pais;
 
-    @Column(name = "Títulos_Grand_Slam", nullable = false)
-    private Integer TitulosGrandSlam;
+    private int TitulosGrandSlam;
 
-    @Column(name = "Años_Actividad", nullable = false)
     private String AñosActividad;
 
-    @Column(name = "Imagen")
     private String Imagen;
 
+
+    @JsonIgnoreProperties("ID_lista")
     @ManyToOne
     @JoinColumn(name = "ID_Lista", nullable = false)
     private ListaJugadores listaJugadores;
-
+    @JsonIgnoreProperties("jugador")
     @OneToMany(mappedBy = "jugador", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Torneos> torneos;
 
@@ -67,11 +66,11 @@ public class Jugadores {
         Pais = pais;
     }
 
-    public Integer getTitulosGrandSlam() {
+    public int getTitulosGrandSlam() {
         return TitulosGrandSlam;
     }
 
-    public void setTitulosGrandSlam(Integer titulosGrandSlam) {
+    public void setTitulosGrandSlam(int titulosGrandSlam) {
         TitulosGrandSlam = titulosGrandSlam;
     }
 
@@ -107,4 +106,3 @@ public class Jugadores {
         this.torneos = torneos;
     }
 }
-
