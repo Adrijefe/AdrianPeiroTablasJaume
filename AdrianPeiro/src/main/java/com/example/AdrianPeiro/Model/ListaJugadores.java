@@ -1,4 +1,5 @@
 package com.example.AdrianPeiro.Model;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -10,6 +11,7 @@ public class ListaJugadores {
     private Long ID_Lista;
 
     private String NombreLista;
+    @JsonIgnoreProperties("listaJugadores")
 
     @OneToMany(mappedBy = "listaJugadores", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Jugadores> jugadores;

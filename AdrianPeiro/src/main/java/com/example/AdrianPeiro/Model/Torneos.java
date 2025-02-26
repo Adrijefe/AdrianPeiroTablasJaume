@@ -4,19 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Torneos")
 public class Torneos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTorneo;
 
-    @Column(name = "NOMBRETORNEO", nullable = false)
     private String nombreTorneo;
 
-    @Column(name = "Año", nullable = false)
     private int año;
 
-    @Column(name = "Resultado", nullable = false)
     private String resultado;
 
 
